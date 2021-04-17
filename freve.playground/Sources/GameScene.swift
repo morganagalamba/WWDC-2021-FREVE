@@ -13,13 +13,27 @@ public class GameScene: SKScene, SKPhysicsContactDelegate {
     var fixedBackground : SKNode = SKNode()
     var fixedFrevoButton : SKNode = SKNode()
     var wichAnimation = "capoeira"
+    var gard: [SKNode] = [SKNode(),SKNode(),SKNode(),SKNode()]
+    var gardAnimation: [SKTexture] = []
+    
     
     public override func sceneDidLoad() {
         physicsWorld.contactDelegate = self
         self.lastUpdateTime = 0
         
+        for i in 0..<4{
+            gardAnimation.append(SKTexture(imageNamed:"gard/g\(i)" ))
+        }
+        
+        for i in 0..<4{
+            gard[i] = self.childNode(withName: "gard\(i)")!
+            gard[i].run(SKAction.repeatForever(SKAction.animate(with: gardAnimation, timePerFrame:  0.5)),withKey: "Animate")
+        }
+        
+        
         fixedBackground = self.childNode(withName: "cenario")!
         fixedFrevoButton = self.childNode(withName: "buttonFrevo")!
+        
         
         capoeira.elementBody = self.childNode(withName: "capoeira")!
         capoeira.loadCapoeiraWalk(folderName: "capoeira", numberOfTextures : 4)
