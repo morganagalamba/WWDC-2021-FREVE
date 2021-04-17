@@ -85,6 +85,30 @@ public class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
     }
+    public func didBegin(_ contact: SKPhysicsContact) {
+        //print("Collison detected")
+
+        if let node = contact.bodyA.node?.name as! String? {
+            if( node  == "gard"){
+
+                capoeira.animateCapoeiraWalk()
+                print(wichAnimation)
+                contact.bodyA.node?.physicsBody = .none
+            }
+
+        }
+        if let node = contact.bodyB.node?.name as! String?{
+            
+            if(node == "gard"){
+                
+                print(wichAnimation)
+                capoeira.animateCapoeiraWalk()
+                contact.bodyB.node?.physicsBody = .none
+            }
+         }
+        
+            
+    }
     
 }
 
