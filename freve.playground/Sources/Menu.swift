@@ -37,13 +37,9 @@ public class Menu : SKScene {
         let touchLocation = touch!.location(in: self)
         
         if self.playButton.contains(touchLocation) {
-            /*if let scene = GameScene(fileNamed: "GameScene") {
-                let transition = SKTransition.crossFade(withDuration: 1)
-                self.scene?.view?.presentScene(scene, transition: transition)
-            }*/
-            let sceneMoveTo = GameScene(fileNamed: "GameScene")
+            let sceneMoveTo = History(fileNamed: "History")
             sceneMoveTo!.scaleMode = self.scaleMode
-            let transition = SKTransition.moveIn( duration: 1)
+            let transition = SKTransition.crossFade(withDuration: 1)
             self.view!.presentScene(sceneMoveTo! ,transition: transition)
         }
     }

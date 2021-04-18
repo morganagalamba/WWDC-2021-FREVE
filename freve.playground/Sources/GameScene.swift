@@ -23,9 +23,6 @@ public class GameScene: SKScene, SKPhysicsContactDelegate {
         print("nao aguento mais esse playground")
         super.didMove(to: view)
         
-        //self.size.height = 640
-        //self.size.width = 480
-        
         physicsWorld.contactDelegate = self
         self.lastUpdateTime = 0
         
