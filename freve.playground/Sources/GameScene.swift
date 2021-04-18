@@ -20,7 +20,6 @@ public class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreTitle = SKNode()
     
     public override func didMove(to view: SKView) {
-        print("nao aguento mais esse playground")
         super.didMove(to: view)
         
         physicsWorld.contactDelegate = self
@@ -78,18 +77,12 @@ public class GameScene: SKScene, SKPhysicsContactDelegate {
         let touchLocation = touch!.location(in: self)
         
         if self.fixedFrevoButton.contains(touchLocation) {
-            //let sceneMoveTo = TutorialScene(size: self.size)
-            //sceneMoveTo.scaleMode = self.scaleMode
-            print("clicou")
             wichAnimation = "frevo"
             capoeira.animateFrevoWalk()
-            //let transition = SKTransition.moveIn(with: .down, duration: 0.3)
-            //self.scene?.view?.presentScene(sceneMoveTo ,transition: transition)
             
         }
     }
     public func didBegin(_ contact: SKPhysicsContact) {
-        print("Collison detected")
 
         if let node = contact.bodyA.node?.name as! String? {
             if( node  == "gard"){
