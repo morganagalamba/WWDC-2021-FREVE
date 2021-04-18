@@ -32,7 +32,7 @@ public class Tutorial: SKScene {
         if self.backButton.contains(touchLocation) {
             let sceneMoveTo = History(fileNamed: "History")
             sceneMoveTo!.scaleMode = self.scaleMode
-            let transition = SKTransition.crossFade(withDuration: 1)
+            let transition = SKTransition.crossFade(withDuration: 0)
             self.view!.presentScene(sceneMoveTo! ,transition: transition)
         }
     }

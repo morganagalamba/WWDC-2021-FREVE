@@ -25,13 +25,13 @@ public class History: SKScene {
         if self.nextButton.contains(touchLocation) {
             let sceneMoveTo = Tutorial(fileNamed: "Tutorial")
             sceneMoveTo!.scaleMode = self.scaleMode
-            let transition = SKTransition.crossFade(withDuration: 1)
+            let transition = SKTransition.crossFade(withDuration: 0)
             self.view!.presentScene(sceneMoveTo! ,transition: transition)
         }
         if self.backButton.contains(touchLocation) {
             let sceneMoveTo = Menu(fileNamed: "Menu")
             sceneMoveTo!.scaleMode = self.scaleMode
-            let transition = SKTransition.crossFade(withDuration: 1)
+            let transition = SKTransition.crossFade(withDuration: 0.5)
             self.view!.presentScene(sceneMoveTo! ,transition: transition)
         }
     }
