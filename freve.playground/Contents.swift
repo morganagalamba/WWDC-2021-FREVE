@@ -6,8 +6,8 @@ import Foundation
 import PlaygroundSupport
  
 let sceneView = SKView(frame: CGRect(x:0 , y:0, width: 640, height: 480))
-var scene = Menu(size: sceneView.frame.size)
-scene.scaleMode = .aspectFill
+var scene = Menu(fileNamed: "Menu")
+//scene.scaleMode = .aspectFill
 sceneView.presentScene(scene)
 
 

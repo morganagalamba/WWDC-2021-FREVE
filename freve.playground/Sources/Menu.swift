@@ -6,16 +6,16 @@ import PlaygroundSupport
 
 public class Menu : SKScene {
     
-    let menuBackground = SKSpriteNode(imageNamed: "Menu")
+    //let menuBackground = SKSpriteNode(imageNamed: "Menu")
     let playButton = SKShapeNode()
     let playButtonLabel = SKLabelNode()
         
     override public func didMove(to view: SKView) {
         super.didMove(to: view)
         
-        self.menuBackground.scale(to: CGSize(width: 640, height: 480))
-        self.menuBackground.anchorPoint = CGPoint(x:0, y:0)
-        self.menuBackground.position = CGPoint(x:0, y:0)
+        //self.menuBackground.scale(to: CGSize(width: 640, height: 480))
+        //self.menuBackground.anchorPoint = CGPoint(x:0, y:0)
+        //self.menuBackground.position = CGPoint(x:0, y:0)
         
         
         let playButtonString = NSMutableAttributedString(string: "play", attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 30, weight: .bold), .foregroundColor : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)])
@@ -27,7 +27,7 @@ public class Menu : SKScene {
         self.playButtonLabel.attributedText = playButtonString
         self.playButtonLabel.position = CGPoint(x: playButton.frame.midX, y: playButton.frame.midY - 10)
         
-        self.addChild(menuBackground)
+        //self.addChild(menuBackground)
         self.addChild(playButton)
         self.addChild(playButtonLabel)
     }
