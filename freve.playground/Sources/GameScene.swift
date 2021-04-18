@@ -1,4 +1,3 @@
-
 import Foundation
 import UIKit
 import SpriteKit
@@ -15,9 +14,18 @@ public class GameScene: SKScene, SKPhysicsContactDelegate {
     var wichAnimation = "capoeira"
     var gard: [SKNode] = [SKNode(),SKNode(),SKNode(),SKNode()]
     var gardAnimation: [SKTexture] = []
+    var score = 0
+    var scoreLabel = SKLabelNode()
+    var scoreBackground = SKNode()
+    var scoreTitle = SKNode()
     
-    
-    public override func sceneDidLoad() {
+    public override func didMove(to view: SKView) {
+        print("nao aguento mais esse playground")
+        super.didMove(to: view)
+        
+        //self.size.height = 640
+        //self.size.width = 480
+        
         physicsWorld.contactDelegate = self
         self.lastUpdateTime = 0
         
@@ -33,6 +41,13 @@ public class GameScene: SKScene, SKPhysicsContactDelegate {
         
         fixedBackground = self.childNode(withName: "cenario")!
         fixedFrevoButton = self.childNode(withName: "buttonFrevo")!
+        scoreTitle = self.childNode(withName: "scoretitle")!
+        scoreBackground = self.childNode(withName: "scoreBackground")!
+        
+        let scoreString = NSMutableAttributedString(string: String(score), attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 30, weight: .bold), .foregroundColor : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)])
+        
+        scoreLabel.attributedText = scoreString
+        scoreLabel.position = CGPoint(x: 250, y: 190)
         
         
         capoeira.elementBody = self.childNode(withName: "capoeira")!
@@ -40,34 +55,25 @@ public class GameScene: SKScene, SKPhysicsContactDelegate {
         capoeira.loadFrevoWalk(folderName: "frevo", numberOfTextures : 6)
         capoeira.walkCapoeira(body: capoeira.elementBody)
         capoeira.animateCapoeiraWalk()
-        
  
         cameraNode.position = CGPoint(x: capoeira.elementBody.position.x,y: 0)
         addChild(cameraNode)
+        addChild(scoreLabel)
         self.camera = cameraNode
-    }
-    
-    public override func didMove(to view: SKView) {
-    
-        capoeira.elementBody = self.childNode(withName: "capoeira")!
-        capoeira.loadCapoeiraWalk(folderName: "capoeira", numberOfTextures: 4)
-        capoeira.loadFrevoWalk(folderName: "frevo", numberOfTextures : 6)
-        
     }
  
     public override func update(_ currentTime: TimeInterval) {
+        let scoreString = NSMutableAttributedString(string: String(score), attributes: [NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 30, weight: .bold), .foregroundColor : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)])
         
-        /*if wichAnimation == "capoeira"{
-            //capoeira.animateCapoeiraWalk()
-        } else {
-            print("mudou")
-            capoeira.animateFrevoWalk()
-        }*/
+        self.scoreLabel.attributedText = scoreString
         let xPos = clamping(num: capoeira.elementBody.position.x , min: 0, max: 1790)
         cameraNode.position = CGPoint(x: xPos  , y: 0.0)
         fixedBackground.position = CGPoint(x: xPos , y: 0.0)
         fixedFrevoButton.position = CGPoint(x: xPos-250  , y: -176)
-        
+        scoreLabel.position = CGPoint(x: xPos+250, y: 190 )
+        scoreTitle.position = CGPoint(x: xPos+140, y: 190 )
+        scoreBackground.position = CGPoint(x: xPos+250, y: 200 )
+        //print(score)
     }
     
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -86,24 +92,28 @@ public class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     public func didBegin(_ contact: SKPhysicsContact) {
-        //print("Collison detected")
+        print("Collison detected")
 
         if let node = contact.bodyA.node?.name as! String? {
             if( node  == "gard"){
-
+                if (wichAnimation == "frevo"){
+                    score = score + 25
+                }
                 capoeira.animateCapoeiraWalk()
-                print(wichAnimation)
                 contact.bodyA.node?.physicsBody = .none
+                wichAnimation = "capoeira"
             }
 
         }
         if let node = contact.bodyB.node?.name as! String?{
             
             if(node == "gard"){
-                
-                print(wichAnimation)
+                if (wichAnimation == "frevo"){
+                    score = score + 25
+                }
                 capoeira.animateCapoeiraWalk()
                 contact.bodyB.node?.physicsBody = .none
+                wichAnimation = "capoeira"
             }
          }
         

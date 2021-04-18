@@ -1,5 +1,8 @@
 import Foundation
+import UIKit
 import SpriteKit
+import GameplayKit
+import PlaygroundSupport
 
 public class Menu : SKScene {
     
@@ -29,19 +32,22 @@ public class Menu : SKScene {
         self.addChild(playButtonLabel)
     }
     
-    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         let touchLocation = touch!.location(in: self)
         
         if self.playButton.contains(touchLocation) {
-            //let sceneMoveTo = TutorialScene(size: self.size)
-            //sceneMoveTo.scaleMode = self.scaleMode
-            print("clicou")
-            //let transition = SKTransition.moveIn(with: .down, duration: 0.3)
-            //self.scene?.view?.presentScene(sceneMoveTo ,transition: transition)
-            
+            /*if let scene = GameScene(fileNamed: "GameScene") {
+                let transition = SKTransition.crossFade(withDuration: 1)
+                self.scene?.view?.presentScene(scene, transition: transition)
+            }*/
+            let sceneMoveTo = GameScene(fileNamed: "GameScene")
+            sceneMoveTo!.scaleMode = self.scaleMode
+            let transition = SKTransition.moveIn( duration: 1)
+            self.view!.presentScene(sceneMoveTo! ,transition: transition)
         }
     }
+   
 }
 
 
