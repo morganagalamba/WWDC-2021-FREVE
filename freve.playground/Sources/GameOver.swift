@@ -4,17 +4,17 @@ import SpriteKit
 import GameplayKit
 import PlaygroundSupport
 
-public class Tutorial: SKScene {
+public class GameOver: SKScene {
     
    
-    var playButton = SKNode()
-    var backButton = SKNode()
+    var playAgainButton = SKNode()
+    var backToMenuButton = SKNode()
         
     override public func didMove(to view: SKView) {
         super.didMove(to: view)
         
-        backButton = self.childNode(withName: "backButton")!
-        playButton = self.childNode(withName: "playButton")!
+        backToMenuButton = self.childNode(withName: "backToMenuButton")!
+        playAgainButton = self.childNode(withName: "playAgainButton")!
        
     }
     
@@ -22,14 +22,14 @@ public class Tutorial: SKScene {
         let touch = touches.first
         let touchLocation = touch!.location(in: self)
         
-        if self.playButton.contains(touchLocation) {
+        if self.playAgainButton.contains(touchLocation) {
             let sceneMoveTo = GameScene(fileNamed: "GameScene")
             sceneMoveTo!.scaleMode = self.scaleMode
             let transition = SKTransition.crossFade(withDuration: 1)
             self.view!.presentScene(sceneMoveTo! ,transition: transition)
         }
-        if self.backButton.contains(touchLocation) {
-            let sceneMoveTo = History(fileNamed: "History")
+        if self.backToMenuButton.contains(touchLocation) {
+            let sceneMoveTo = Menu(fileNamed: "Menu")
             sceneMoveTo!.scaleMode = self.scaleMode
             let transition = SKTransition.crossFade(withDuration: 0)
             self.view!.presentScene(sceneMoveTo! ,transition: transition)

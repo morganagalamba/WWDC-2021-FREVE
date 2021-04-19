@@ -106,8 +106,50 @@ public class GameScene: SKScene, SKPhysicsContactDelegate {
                 wichAnimation = "capoeira"
             }
          }
-        
+        if let node = contact.bodyA.node?.name as! String? {
+            if( node  == "end"){
+                if(score == 0){
+                    let sceneMoveTo = GameOver(fileNamed: "gameover")
+                    sceneMoveTo!.scaleMode = self.scaleMode
+                    let transition = SKTransition.crossFade(withDuration: 1)
+                    self.view!.presentScene(sceneMoveTo! ,transition: transition)
+                } else if ( score < 100){
+                    let sceneMoveTo = End1(fileNamed: "end1")
+                    sceneMoveTo!.scaleMode = self.scaleMode
+                    let transition = SKTransition.crossFade(withDuration: 1)
+                    self.view!.presentScene(sceneMoveTo! ,transition: transition)
+                } else {
+                    let sceneMoveTo = End2(fileNamed: "end2")
+                    sceneMoveTo!.scaleMode = self.scaleMode
+                    let transition = SKTransition.crossFade(withDuration: 1)
+                    self.view!.presentScene(sceneMoveTo! ,transition: transition)
+                }
+               
+            }
+
+        }
+        if let node = contact.bodyB.node?.name as! String?{
             
+            if(node == "end"){
+                if(score == 0){
+                    let sceneMoveTo = GameOver(fileNamed: "gameover")
+                    sceneMoveTo!.scaleMode = self.scaleMode
+                    let transition = SKTransition.crossFade(withDuration: 1)
+                    self.view!.presentScene(sceneMoveTo! ,transition: transition)
+                } else if ( score < 100){
+                    let sceneMoveTo = End1(fileNamed: "end1")
+                    sceneMoveTo!.scaleMode = self.scaleMode
+                    let transition = SKTransition.crossFade(withDuration: 1)
+                    self.view!.presentScene(sceneMoveTo! ,transition: transition)
+                } else {
+                    let sceneMoveTo = End2(fileNamed: "end2")
+                    sceneMoveTo!.scaleMode = self.scaleMode
+                    let transition = SKTransition.crossFade(withDuration: 1)
+                    self.view!.presentScene(sceneMoveTo! ,transition: transition)
+                }
+            }
+         }
+                
     }
     
 }
